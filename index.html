@@ -7,7 +7,7 @@
 <div id="song-content"></div>
 <div class="section-head" id="guide"><h2>선교 안내</h2></div><article class="card"><h3>방문 및 협력 교회</h3><p>쿠모이 그리스도 복음교회<br>코카 그리스도 복음교회<br>Grace &amp; Truth 교회</p><div class="note">모든 일정은 현지 교회 및 현장 상황에 따라 변경될 수 있습니다. 구체적인 집합 장소, 공항 및 교통 정보는 추후 안내합니다.</div></article><div class="footer">SHIGA JAPAN MISSION · 2026.11.12–15</div></main><script>
 const songs=[
- {title:'예수로 나의 구주 삼고',jp:'罪 咎を赦され',file:'songs/01_jesus_savior.pdf',form:'1절 - 2절 - 3절',jptext:`【1절】
+ {title:'예수로 나의 구주 삼고',jp:'罪 咎を赦され',file:'songs/01_jesus_savior.pdf',jptext:`【1절】
 罪 咎を赦され
 神の子となりたる
 わが魂の喜び
@@ -50,7 +50,7 @@ const songs=[
 와가 미코소 사치나레
 칸샤 나키 히와 나쿠
 산비 나키 요와 나시`},
- {title:'여호와께 돌아가자',jp:'さあ 主に帰ろう',file:'songs/02_return_to_lord.pdf',form:'송폼 미설정',jptext:`わが民離れて 帰ろうと
+ {title:'여호와께 돌아가자',jp:'さあ 主に帰ろう',file:'songs/02_return_to_lord.pdf',jptext:`わが民離れて 帰ろうと
 私の愛ゆえ あきらめず
 
 すべてを おろして
@@ -79,7 +79,7 @@ const songs=[
 우라깃테모 슈와 카와라나이
 사아 슈니 카에로오
 타오레테모 슈노 아이 토와아니`},
- {title:'나 같은 죄인 살리신',jp:'驚くばかりの恵なりき',file:'songs/03_amazing_grace.pdf',form:'1절 - 2절 - 3절 - 4절 - 후렴',jptext:`【1절】
+ {title:'나 같은 죄인 살리신',jp:'驚くばかりの恵なりき',file:'songs/03_amazing_grace.pdf',jptext:`【1절】
 驚くばかりの 恵なりき
 このみの汚れを 知れる我に
 
@@ -116,8 +116,8 @@ const songs=[
 【Chorus】
 와타시노 츠미토가 아나타와 지유우니
 카기리노 나이 아이 아후레루 메구미요`},
- {title:'꽃들도',jp:'花も (Hanamo)',file:'songs/04_hanamo.pdf',form:'전주 - 1절 - 후렴 - 1절 - 2절 - 후렴 - 후렴',jptext:'업로드한 악보는 한국어 가사 중심입니다. 일본어 가사와 발음은 추가 자료를 받으면 입력할 수 있어요.',pron:'악보 PDF를 확인해 주세요.'},
- {title:'더 원합니다 (예수 사랑합니다)',jp:'イエス あいします',file:'songs/05_more_of_you.pdf',form:'송폼 미설정',jptext:`イエス あいします
+ {title:'꽃들도',jp:'花も (Hanamo)',file:'songs/04_hanamo.pdf',jptext:'업로드한 악보는 한국어 가사 중심입니다. 일본어 가사와 발음은 추가 자료를 받으면 입력할 수 있어요.',pron:'악보 PDF를 확인해 주세요.'},
+ {title:'더 원합니다 (예수 사랑합니다)',jp:'イエス あいします',file:'songs/05_more_of_you.pdf',jptext:`イエス あいします
 あいします こころをそそぎ
 あなたに したい もとめます
 
@@ -132,7 +132,7 @@ const songs=[
 아나타오 시타우 오모이
 미코토바니 히키요세 테시오
 시타이 모토메마스`},
- {title:'예배하는 자 되어',jp:'今、主を崇めてゆこう',file:'songs/06_worshipper.pdf',form:'송폼 미설정',jptext:`今、主を崇めてゆこう
+ {title:'예배하는 자 되어',jp:'今、主を崇めてゆこう',file:'songs/06_worshipper.pdf',jptext:`今、主を崇めてゆこう
 聖い霊と真理で
 主を讃えよう
 主がここにおられ
@@ -169,7 +169,7 @@ function renderSongs(){
  document.querySelectorAll('[data-song]').forEach(b=>b.onclick=()=>{selectedSong=Number(b.dataset.song);renderSongs();document.getElementById('song-content').scrollIntoView({behavior:'smooth',block:'start'});});
  const song=songs[selectedSong],sections=getSections(song);
  const sectionsHtml=sections.map((part,i)=>`<section class="verse-card" id="verse-${i}"><h3>${safe(part.label)}</h3><div class="song-label">일본어 가사</div><div class="lyrics">${safe(part.jp)}</div><div class="song-label" style="margin-top:14px">한글 발음</div><div class="lyrics pronunciation">${safe(part.pron)}</div></section>`).join('');
- document.getElementById('song-content').innerHTML=`<div class="song-sticky"><small>SONG FORM · 찬양 순서</small><p>${safe(song.form)}</p></div><article class="card song-detail"><div class="song-label">SONG ${String(selectedSong+1).padStart(2,'0')}</div><h2 style="margin:10px 0">${safe(song.title)}</h2><p class="sub">${safe(song.jp)}</p><div class="song-audio"><h3>음원 · AUDIO</h3>${song.audio?`<audio controls preload="none" src="${safe(song.audio)}"></audio>`:'<p class="sub">아직 등록된 음원이 없습니다. 음원 파일을 추가하면 여기에서 바로 재생할 수 있어요.</p>'}</div><div class="song-label">가사 순서 · LYRICS</div><nav class="song-nav">${sections.map((part,i)=>`<a href="#verse-${i}" data-verse="${i}">${safe(part.label)}</a>`).join('')}</nav>${sectionsHtml}<div class="song-links" style="margin-top:20px"><a href="${safe(song.file)}" target="_blank" rel="noopener">악보 PDF 열기 ↗</a></div><p class="practice-hint">제공된 자료에 없는 절 구분과 음원은 임의로 추가하지 않았습니다. 송폼은 실제 찬양 순서에 맞게 조정할 수 있어요.</p></article>`;
+ document.getElementById('song-content').innerHTML=`<article class="card song-detail"><div class="song-label">SONG ${String(selectedSong+1).padStart(2,'0')}</div><h2 style="margin:10px 0">${safe(song.title)}</h2><p class="sub">${safe(song.jp)}</p><div class="song-audio"><h3>음원 · AUDIO</h3>${song.audio?`<audio controls preload="none" src="${safe(song.audio)}"></audio>`:'<p class="sub">아직 등록된 음원이 없습니다. 음원 파일을 추가하면 여기에서 바로 재생할 수 있어요.</p>'}</div><div class="song-label">가사 순서 · LYRICS</div><nav class="song-nav">${sections.map((part,i)=>`<a href="#verse-${i}" data-verse="${i}">${safe(part.label)}</a>`).join('')}</nav>${sectionsHtml}<div class="song-links" style="margin-top:20px"><a href="${safe(song.file)}" target="_blank" rel="noopener">악보 PDF 열기 ↗</a></div><p class="practice-hint">제공된 자료에 없는 절 구분과 음원은 임의로 추가하지 않았습니다. </p></article>`;
  document.querySelectorAll('[data-verse]').forEach(a=>a.onclick=e=>{e.preventDefault();document.getElementById('verse-'+a.dataset.verse)?.scrollIntoView({behavior:'smooth',block:'start'});});
 }
 renderSongs();
