@@ -160,7 +160,7 @@ window.initialSongs.forEach((song,i)=>{song.meaning=meanings[i];song.audio=audio
 </script>
 <script>
 // Render the original six songs even when Firebase is unreachable.
-window.shigaInitial = window.initialSongs.map((s,i)=>({...s,meaning:JSON.parse(document.getElementById('song-meanings').textContent)[i],audio: i<5 ? 'https://raw.githubusercontent.com/martys-with-Jesus/shiga-mission-2026/main/'+encodeURIComponent(['예수로 나의 구주 삼고.mp3','여호와께 돌아가자.mp3','나 같은 죄인 살리신.mp3','꽃들도.mp3','더 원합니다.mp3'][i]) : '',order:i}));
+window.shigaInitial = window.initialSongs.map((s,i)=>({...s,meaning:JSON.parse(document.getElementById('song-meanings').textContent)[i],audio: i<5 ? 'https://raw.githubusercontent.com/martys-with-Jesus/shiga-mission-2026/main/'+encodeURIComponent(['예수로 나의 구주 삼고 .mp3','여호와께 돌아가자.mp3','나 같은 죄인 살리신.mp3','꽃들도.mp3','더 원합니다.mp3'][i]) : '',order:i}));
 window.shigaSongs=window.shigaInitial.map((s,i)=>({...s,id:'default-'+i}));
 window.shigaSelected=0;
 const shidaEsc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
